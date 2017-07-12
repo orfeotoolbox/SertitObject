@@ -1,9 +1,4 @@
-set(SertitObject_LINK_LIBRARIES
-${OTBCommon_LIBRARIES}
-${0TBApplicationEngine_LIBRARIES}
-${OTBStatistics_LIBRARIES}
-${OTBConversion_LIBRARIES}
-)
+cmake_minimum_required (VERSION 2.8)
 
 OTB_CREATE_APPLICATION(NAME Aggregate
                        SOURCES otbAggregate.cpp
@@ -14,9 +9,3 @@ OTB_CREATE_APPLICATION(NAME ObjectsRadiometricStatistics
                        SOURCES otbObjectsRadiometricStatistics.cpp
                        LINK_LIBRARIES ${${otb-module}_LIBRARIES}
 )
-
-
-
-
-
-
