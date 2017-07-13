@@ -40,7 +40,6 @@ void otb::Wrapper::Aggregate::DoExecute()
 	// Récupération de la labelmap
 	LabelImageType::Pointer labelIn = GetParameterUInt32Image("inseg");
 	labelIn->SetRequestedRegionToLargestPossibleRegion();
-	labelIn->Update();
 
 	// Filtre statistique pour récupérer le nombre de label dans la labelmap
 	StatisticsImageFilterType::Pointer stats = StatisticsImageFilterType::New();
@@ -63,7 +62,6 @@ void otb::Wrapper::Aggregate::DoExecute()
 	ConverterStatisticsType::Pointer converterStats = ConverterStatisticsType::New();
 	converterStats->SetInput(labelIn);
 	converterStats->SetBackgroundValue(0);
-	converterStats->Update();
 
 	// Calcul des statistiques par objet de la LabelMap
 	StatisticsFilterType::Pointer statistics = StatisticsFilterType::New();

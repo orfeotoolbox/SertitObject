@@ -74,7 +74,6 @@ void otb::Wrapper::ObjectsRadiometricStatistics::DoExecute()
 	ConverterStatisticsType::Pointer converterStats = ConverterStatisticsType::New(); 
 	converterStats->SetInput(m_OGRDataSourceRendering->GetOutput()); 
 	converterStats->SetBackgroundValue(GetParameterInt("background")); 
-	converterStats->Update();
 
 	// Prepare channel extraction
 
