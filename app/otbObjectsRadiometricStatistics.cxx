@@ -61,7 +61,6 @@ private:
 	SetName("ObjectsRadiometricStatistics");
 	SetDescription("Compute features attributes of a vector dataset over an image.");
 
-	SetDocName("ObjectsRadiometricStatistics");
 	SetDocLongDescription("This application computes radiometric and shapes attributes on a vector dataset, using an image. The results are stored in the attribute table. Shape attributes are : number of pixels, flatness, roundness, elongation, perimeter. Radiometric attributes are for each band of the input image : mean, standard-deviation, median, variance, kurtosis, skewness.");
 	SetDocLimitations("None");
 	SetDocAuthors("Arnaud Durand");

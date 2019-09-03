@@ -55,7 +55,6 @@ private:
 	SetName("Aggregate");
 	SetDescription("This application assign a class on each object of a segmentation by majority voting on a pixel-based classification.");
 
-	SetDocName("Aggregate");
 	SetDocLongDescription("The aim of this application is to merge the result of a segmentation with a pixel-based image classification in order to produce an object-oriented image classification. The input segmentation is a labeled image, typically the result provided by the OTB application LSMSSegmentation. The output is a vector dataset containing objects and the corresponding class in the attribute table. Connected regions belonging to the same class are merged. This application could be used at the last step of the LSMS pipeline in replacement of the application LSMSVectorization.");
 	SetDocLimitations("Input classification and labeled image should have identical resolution and footprint");
 	SetDocAuthors("Lucie Bouillot");
