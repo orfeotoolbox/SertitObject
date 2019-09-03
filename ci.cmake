@@ -129,7 +129,8 @@ if (RM_GET_FULL_DATA OR RM_DATA_PATTERNS)
   execute_process(COMMAND git lfs fetch
                   WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb)
   execute_process(COMMAND git reset HEAD *
-                  WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb)
+                  WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb
+                  OUTPUT_QUIET)
   execute_process(COMMAND git checkout -- Data/*
                   WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb)
   set( CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}-DOTB_DATA_ROOT:PATH=${REMOTE_MODULE_SOURCE_DIR}/otb/Data;")
