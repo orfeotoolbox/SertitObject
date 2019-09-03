@@ -63,6 +63,7 @@ install:
     source xdk/otbenv.profile;
     fi
 #  - ctest -S xdk/share/otb/swig/build_wrapping.cmake -VV
+  - ctest -DNAMESPACE:STRING="OTB" -S xdk/lib/cmake/OTB-6.7/NamespaceHandler.cmake
 
 script:
   - ctest -VV -S ./ci.cmake
