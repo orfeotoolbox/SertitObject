@@ -125,10 +125,13 @@ if (RM_GET_FULL_DATA OR RM_DATA_PATTERNS)
     string(REPLACE ";" "," lfs_includes "${RM_DATA_PATTERNS}")
     set(lfs_includes "--include=\"${lfs_includes}\"")
     message(STATUS "  Get paths: ${RM_DATA_PATTERNS}")
+    message("lfs_includes : ${lfs_includes}")
     execute_process(COMMAND git config lfs.fetchinclude "${lfs_includes}"
                     WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb
                     RESULT_VARIABLE _return_code)
     message("git config return: ${_return_code}")
+    file(READ "otb/.git/config" _otb_gitconfig)
+    message("OTB git config :\n${_otb_gitconfig}")
   endif()
   execute_process(COMMAND git lfs fetch
                   WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb
