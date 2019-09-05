@@ -123,7 +123,6 @@ if (RM_GET_FULL_DATA OR RM_DATA_PATTERNS)
     message(STATUS "  Get full data")
   else()
     string(REPLACE ";" "," lfs_includes "${RM_DATA_PATTERNS}")
-    set(lfs_includes "--include=\"${lfs_includes}\"")
     message(STATUS "  Get paths: ${RM_DATA_PATTERNS}")
     message("lfs_includes : ${lfs_includes}")
     execute_process(COMMAND git config lfs.fetchinclude "${lfs_includes}"
