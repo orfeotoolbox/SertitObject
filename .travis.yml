@@ -29,7 +29,7 @@ matrix:
     osx_image: xcode10.2
     compiler: clang
     before_install:
-      - brew install ninja libomp
+      - brew install ninja libomp git-lfs
     env:
       - OTB_OS=Darwin64
       - OTB_PKG_EXT=run
