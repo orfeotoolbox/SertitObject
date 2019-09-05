@@ -145,8 +145,8 @@ if (RM_GET_FULL_DATA OR RM_DATA_PATTERNS)
   message("git checkout return: ${_return_code}")
   # DEBUG
   foreach(_filename ${RM_DATA_PATTERNS})
-    file(MD5 "${_filename}" _out_md5)
-    message("File [${_filename}] : md5=${_out_md5}")
+    file(MD5 "otb/${_filename}" _out_md5)
+    message("File [otb/${_filename}] : md5=${_out_md5}")
   endforeach()
 
   set( CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}-DOTB_DATA_ROOT:PATH=${REMOTE_MODULE_SOURCE_DIR}/otb/Data;")
