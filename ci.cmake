@@ -116,7 +116,9 @@ set(RM_DATA_REF develop)
 if (RM_GET_FULL_DATA OR RM_DATA_PATTERNS)
   message(STATUS "Retrieve data files from OTB")
   execute_process(COMMAND git clone -b ${RM_DATA_REF} --depth 1 -n https://gitlab.orfeo-toolbox.org/orfeotoolbox/otb.git
-                  WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR})
+                  WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}
+                  RESULT_VARIABLE _return_code)
+  message("git clone return: ${_return_code}")
   if(RM_GET_FULL_DATA)
     message(STATUS "  Get full data")
   else()
@@ -124,15 +126,29 @@ if (RM_GET_FULL_DATA OR RM_DATA_PATTERNS)
     set(lfs_includes "--include=\"${lfs_includes}\"")
     message(STATUS "  Get paths: ${RM_DATA_PATTERNS}")
     execute_process(COMMAND git config lfs.fetchinclude "${lfs_includes}"
-                    WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb)
+                    WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb
+                    RESULT_VARIABLE _return_code)
+    message("git config return: ${_return_code}")
   endif()
   execute_process(COMMAND git lfs fetch
-                  WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb)
+                  WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb
+                  RESULT_VARIABLE _return_code)
+  message("git lfs fetch return: ${_return_code}")
   execute_process(COMMAND git reset HEAD *
                   WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb
-                  OUTPUT_QUIET)
+                  OUTPUT_QUIET
+                  RESULT_VARIABLE _return_code)
+  message("git reset return: ${_return_code}")
   execute_process(COMMAND git checkout -- Data/*
-                  WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb)
+                  WORKING_DIRECTORY ${REMOTE_MODULE_SOURCE_DIR}/otb
+                  RESULT_VARIABLE _return_code)
+  message("git checkout return: ${_return_code}")
+  # DEBUG
+  foreach(_filename ${RM_DATA_PATTERNS})
+    file(MD5 "${_filename}" _out_md5)
+    message("File [${_filename}] : md5=${_out_md5}")
+  endforeach()
+
   set( CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS}-DOTB_DATA_ROOT:PATH=${REMOTE_MODULE_SOURCE_DIR}/otb/Data;")
 endif()
 
