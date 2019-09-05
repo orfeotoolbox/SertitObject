@@ -25,7 +25,13 @@ else()
   set(ci_short_sha "$ENV{TRAVIS_COMMIT}")
 endif()
 
-set(CTEST_BUILD_NAME "$ENV{TRAVIS_BRANCH}")
+set(CTEST_PROJECT_NAME "${otb-module}")
+set(CTEST_DROP_METHOD "https")
+set(CTEST_DROP_SITE "cdash.orfeo-toolbox.org")
+set(CTEST_DROP_LOCATION "/submit.php?project=OTB")
+set(CTEST_DROP_SITE_CDASH TRUE)
+
+set(CTEST_BUILD_NAME "${CTEST_PROJECT_NAME} ($ENV{TRAVIS_BRANCH})")
 set(CTEST_SITE "$ENV{TRAVIS_OS_NAME}")
 set(compiler_name "$ENV{TRAVIS_COMPILER}")
 if("${CTEST_SITE}" STREQUAL "linux")
@@ -37,12 +43,6 @@ elseif("${CTEST_SITE}" STREQUAL "windows")
   set(compiler_name "vc140")
 endif()
 set(CTEST_SITE "${CTEST_SITE}-${compiler_name}")
-
-set(CTEST_PROJECT_NAME "${otb-module}")
-set(CTEST_DROP_METHOD "https")
-set(CTEST_DROP_SITE "cdash.orfeo-toolbox.org")
-set(CTEST_DROP_LOCATION "/submit.php?project=OTB")
-set(CTEST_DROP_SITE_CDASH TRUE)
 
 # Detect "skip testing"
 if(DEFINED ENV{CI_SKIP_TESTING})
